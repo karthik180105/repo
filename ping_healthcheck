@@ -1,0 +1,12 @@
+---
+- name: Ping Health Check
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Verify host connectivity
+      ansible.builtin.ping:
+
+    - name: Display success message
+      ansible.builtin.debug:
+        msg: "Health check successful on {{ inventory_hostname }}"
