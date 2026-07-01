@@ -1,14 +1,12 @@
-
 ---
-- name: Disk Usage Health Check
+- name: Ping Health Check
   hosts: ubuntu
   gather_facts: false
 
   tasks:
-    - name: Check disk usage
-      ansible.builtin.command: df -h /
-      register: disk_output
+    - name: Verify host connectivity
+      ansible.builtin.ping:
 
-    - name: Display disk usage
+    - name: Display success message
       ansible.builtin.debug:
-        var: disk_output.stdout_lines
+        msg: "Health check successful on {{ inventory_hostname }}"
