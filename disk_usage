@@ -1,0 +1,13 @@
+---
+- name: Disk Usage Health Check
+  hosts: ubuntu
+  gather_facts: false
+
+  tasks:
+    - name: Check disk usage
+      ansible.builtin.command: df -h /
+      register: disk_output
+
+    - name: Display disk usage
+      ansible.builtin.debug:
+        var: disk_output.stdout_lines
