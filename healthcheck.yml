@@ -1,12 +1,16 @@
 ---
-- name: Ping Health Check
-  hosts: ubuntu
+- name: Basic Health Check
+  hosts: all
   gather_facts: false
 
   tasks:
-    - name: Verify host connectivity
+    - name: Ping host
       ansible.builtin.ping:
 
-    - name: Display success message
+    - name: Check uptime
+      ansible.builtin.command: uptime
+      register: uptime_output
+
+    - name: Display uptime
       ansible.builtin.debug:
-        msg: "Health check successful on {{ inventory_hostname }}"
+        var: uptime_output.stdout
