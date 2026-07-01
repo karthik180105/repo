@@ -1,6 +1,6 @@
 ---
 - name: Ping Health Check
-  hosts: ubuntu
+  hosts: all
   gather_facts: false
 
   tasks:
