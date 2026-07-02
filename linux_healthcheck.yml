@@ -1,0 +1,30 @@
+---
+- name: Linux Server Health Check
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+    - name: Get CPU Load
+      ansible.builtin.command: uptime
+      register: cpu_output
+
+    - name: Display CPU Load
+      ansible.builtin.debug:
+        var: cpu_output.stdout
+
+    - name: Get Memory Usage
+      ansible.builtin.command: free -m
+      register: memory_output
+
+    - name: Display Memory Usage
+      ansible.builtin.debug:
+        var: memory_output.stdout_lines
+
+    - name: Get Disk Usage
+      ansible.builtin.command: df -h
+      register: disk_output
+
+    - name: Display Disk Usage
+      ansible.builtin.debug:
+        var: disk_output.stdout_lines
