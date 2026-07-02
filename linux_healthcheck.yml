@@ -1,6 +1,6 @@
 ---
 - name: Linux Server Health Check
-  hosts: 15.135.89.140
+  hosts: all
   gather_facts: false
 
   tasks:
